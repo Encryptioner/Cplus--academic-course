@@ -1,0 +1,205 @@
+#include<iostream>
+#include<cstring>
+#include<cstdio>
+#include<cstdlib>
+
+
+using namespace std;
+
+class admission_system
+{
+private:
+    char Student_name[20];
+    char dept[8];
+    int Student_Roll;
+    int Merit_pos;
+    int choice[10];
+    int count;
+
+public:
+    void get_data_and_choice(admission_system a[800]);
+    void sorting(admission_system a[800], int p);
+    void sorting(admission_system a[800], double p);
+    void find_dept(admission_system a[800]);
+    void print(admission_system a[800]);
+
+}a[800],RUET;
+
+void admission_system :: get_data_and_choice(admission_system a[800])
+{
+    int roll,i=0,j;
+    count=0;
+    cout<<"Department = Choice"<<endl;
+    cout<<"   ARCHI   = 10\n    EEE    = 1\n    CSE    = 2\n    ETE    = 3\n     ME    = 4\n    MTE    = 5\n     CE    = 6\n    URP    = 7\n    IPE    = 8\n    GCE    = 9\n"<<endl;
+
+    cout<<"Enter input and Press 0 when input finish\n"<<endl;
+
+    cout<<"Enter Roll no: ";
+    cin>>roll;
+    while(roll>0)
+    {
+        a[i].Student_Roll=roll;
+        cout<<"Enter Student name: ";
+        cin>>a[i].Student_name;
+        cout<<"Enter Student Merit Position: ";
+        cin>>a[i].Merit_pos;
+        cout<<"Enter Student choice serial: ";
+        for(j=0;j<9;j++)
+        {
+            cin>>a[i].choice[j];
+            if(a[i].choice[j]==10)
+                break;
+        }
+        i++;
+        count++;
+        cout<<"Enter Roll no: ";
+        cin>>roll;
+    }
+    return ;
+
+}
+
+ void  admission_system :: sorting(admission_system a[800], int p)
+ {
+
+     int i,j;
+     for(i=0;i<count-1;i++)
+     {
+         for(j=i+1;j<count;j++)
+         {
+             if(a[i].Merit_pos>a[j].Merit_pos)
+             {
+                 swap(a[i],a[j]);
+             }
+         }
+     }
+    return ;
+ }
+
+void admission_system :: find_dept(admission_system a[800])
+{
+    int EEE=1,CSE=1,ME=1,CE=1,IPE=0,ARCHI=1,ETE=0,GCE=0,MTE=0,URP=0;
+    int i,j;
+    for(i=0;i<count;i++)
+    {
+        for(j=0;j<9;j++)
+        {
+            if(a[i].choice[j]==1 && EEE>0)
+            {
+                strcpy(a[i].dept,"EEE");
+                EEE--;
+                cout<<3434<<endl;
+                break;
+            }
+            else if(a[i].choice[j]==2 && CSE>0)
+            {
+                strcpy(a[i].dept,"CSE");
+                CSE--;
+                break;
+
+            }
+
+             else if(a[i].choice[j]==3 && ETE>0)
+             {
+                 strcpy(a[i].dept,"ETE");
+                 ETE--;
+                 break;
+
+             }
+
+              else if(a[i].choice[j]==4 && ME>0)
+              {
+                 strcpy(a[i].dept,"ME");
+                  ME--;
+                  break;
+
+              }
+              else if(a[i].choice[j]==5 && MTE>0)
+              {
+                  strcpy(a[i].dept,"MTE");
+                  MTE--;
+                  break;
+
+              }
+              else if(a[i].choice[j]==6 && CE>0)
+              {
+                 strcpy(a[i].dept,"CE");
+                  CE--;
+                  break;
+
+              }
+              else if(a[i].choice[j]==7 && URP>0)
+              {
+                  strcpy(a[i].dept,"URP");
+                  URP--;
+                  break;
+
+              }
+              else if(a[i].choice[j]==8 && IPE>0)
+              {
+                 strcpy(a[i].dept,"IPE");
+                  IPE--;
+                  break;
+
+
+              }
+              else if(a[i].choice[j]==9 && GCE>0)
+              {
+                 strcpy(a[i].dept,"GCE");
+                  GCE--;
+                  break;
+
+              }
+              else if(a[i].choice[j]==10 && ARCHI>0)
+              {
+                  strcpy(a[i].dept,"ARCHI");
+                  ARCHI--;
+                  break;
+
+              }
+        }
+    }
+    return ;
+
+}
+
+void admission_system :: print(admission_system a[800])
+{
+    int i;
+    cout<<"Roll\tName\tMerit Position\tDepartment\n"<<endl;
+    for(i=0;i<count;i++)
+    {
+        cout<<a[i].Student_Roll<<"\t"<<a[i].Student_name<<"   \t"<<a[i].Merit_pos<<"\t"<<a[i].dept<<endl;
+    }
+    return ;
+}
+
+ void  admission_system :: sorting(admission_system a[800], double p)
+ {
+
+     int i,j;
+     for(i=0;i<count-1;i++)
+     {
+         for(j=i+1;j<count;j++)
+         {
+             if(a[i].Student_Roll>a[j].Student_Roll)
+             {
+                 swap(a[i],a[j]);
+             }
+         }
+     }
+    return ;
+ }
+
+
+int main()
+{
+    freopen("E:\\1.txt","r",stdin);
+    admission_system RUET;
+    RUET.get_data_and_choice(a);
+    RUET.sorting(a,1);
+    RUET.find_dept(a);
+    RUET.sorting(a,1.5);
+    RUET.print(a);
+    return 0;
+}
